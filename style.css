@@ -1,0 +1,422 @@
+/* ===================================================
+   CAKE RAFFLE - STYLES
+   Each rule has a comment explaining what it does.
+   =================================================== */
+
+/* Color palette saved as variables so they are easy to change in one place */
+:root {
+    --pink: #ff4081;          /* Main vibrant pink (header) */
+    --pink-dark: #e91e63;     /* Darker pink for hover effects */
+    --pink-light: #ffe4ee;    /* Very light pink for soft backgrounds */
+    --teal: #00bfa5;          /* Complementary teal for the Draw button */
+    --teal-dark: #00897b;     /* Darker teal for hover */
+    --yellow: #ffd54f;        /* Sunny yellow for highlights */
+    --purple: #7c4dff;        /* Purple accent for the Add button */
+    --purple-dark: #651fff;   /* Darker purple for hover */
+    --text: #3d2c3e;          /* Main text color (soft dark plum) */
+    --white: #ffffff;         /* Pure white for cards */
+}
+
+/* Remove default browser spacing and make sizes easier to calculate */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page background, font and text color */
+body {
+    font-family: "Fredoka", Arial, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f6 0%, #fce4ff 50%, #e0f7fa 100%);
+    overflow-x: hidden;
+}
+
+/* Container for the floating background emojis */
+.sprinkles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Each floating emoji: positioned and slowly moving up and down */
+.sprinkles span {
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.25;
+    animation: float 8s ease-in-out infinite;
+}
+
+/* Place each floating emoji in a different spot with a different delay */
+.sprinkles span:nth-child(1) { top: 15%; left: 5%;  animation-delay: 0s; }
+.sprinkles span:nth-child(2) { top: 70%; left: 8%;  animation-delay: 1s; }
+.sprinkles span:nth-child(3) { top: 40%; left: 92%; animation-delay: 2s; }
+.sprinkles span:nth-child(4) { top: 85%; left: 85%; animation-delay: 3s; }
+.sprinkles span:nth-child(5) { top: 55%; left: 3%;  animation-delay: 4s; }
+.sprinkles span:nth-child(6) { top: 20%; left: 88%; animation-delay: 5s; }
+.sprinkles span:nth-child(7) { top: 90%; left: 45%; animation-delay: 6s; }
+.sprinkles span:nth-child(8) { top: 30%; left: 50%; animation-delay: 7s; }
+
+/* The floating movement: up a little, tilt, then back down */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-25px) rotate(10deg); }
+}
+
+/* Header: vibrant pink background with a wavy bottom edge */
+.header {
+    position: relative;
+    z-index: 1;
+    background: var(--pink);
+    color: var(--white);
+    text-align: center;
+    padding: 50px 20px 80px;
+    clip-path: ellipse(120% 100% at 50% 0%);
+    box-shadow: 0 6px 20px rgba(255, 64, 129, 0.35);
+}
+
+/* Big cake emoji at the top that gently bounces */
+.header-emoji {
+    font-size: 70px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+/* The bounce movement for the header cake */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
+}
+
+/* Main title */
+.header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 3px 3px 0 var(--pink-dark);
+    margin-top: 10px;
+}
+
+/* Small sentence under the title */
+.tagline {
+    font-size: 20px;
+    margin-top: 10px;
+    opacity: 0.95;
+}
+
+/* Main area: a grid that holds the three cards */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    margin: -40px auto 40px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* White rounded card used by every section */
+.card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(124, 77, 255, 0.12);
+    border: 3px solid var(--pink-light);
+}
+
+/* The entry form card stretches across both columns */
+.entry-section {
+    grid-column: 1 / -1;
+}
+
+/* Section headings inside the cards */
+.card h2 {
+    font-size: 26px;
+    color: var(--pink);
+    margin-bottom: 18px;
+}
+
+/* Form layout: input and button side by side */
+.entry-form {
+    display: flex;
+    gap: 12px;
+}
+
+/* Hides the label visually but keeps it for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* Name input box */
+.entry-form input {
+    flex: 1;
+    padding: 16px 20px;
+    font-size: 18px;
+    font-family: inherit;
+    border: 3px solid var(--pink-light);
+    border-radius: 50px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Input box when the user clicks into it */
+.entry-form input:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.15);
+}
+
+/* Shared style for all buttons */
+.btn {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 28px;
+    cursor: pointer;
+    color: var(--white);
+    transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
+}
+
+/* All buttons grow slightly when hovered */
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.03);
+}
+
+/* All buttons squish slightly when clicked */
+.btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+/* "Add Me!" button: purple */
+.btn-add {
+    background: var(--purple);
+    box-shadow: 0 5px 0 var(--purple-dark);
+}
+
+/* "Add Me!" button when hovered: darker purple */
+.btn-add:hover {
+    background: var(--purple-dark);
+}
+
+/* Small message under the form */
+.form-message {
+    min-height: 22px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--pink-dark);
+}
+
+/* Title row of the participants card (heading + counter) */
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Remove the bottom space from the heading in the title row */
+.section-title h2 {
+    margin-bottom: 18px;
+}
+
+/* Round yellow bubble that shows how many people entered */
+.count-badge {
+    background: var(--yellow);
+    color: var(--text);
+    font-weight: 700;
+    font-size: 18px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+/* List of participants: no bullets, scrolls if it gets long */
+.participants-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Each participant appears as a colorful pill */
+.participants-list li {
+    background: var(--pink-light);
+    color: var(--pink-dark);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: pop-in 0.3s ease-out;
+}
+
+/* Small "×" button to remove a participant */
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--pink-dark);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* The highlighted participant while the draw is "shuffling" */
+.participants-list li.highlight {
+    background: var(--yellow);
+    color: var(--text);
+    transform: scale(1.1);
+}
+
+/* The participant who won stays highlighted */
+.participants-list li.winner {
+    background: var(--teal);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+/* Animation for new participants popping into the list */
+@keyframes pop-in {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* Message shown when nobody has entered yet */
+.empty-message {
+    color: #9a8a9b;
+    font-style: italic;
+}
+
+/* Winner card content centered */
+.winner-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Box where the winner's name appears */
+.winner-display {
+    flex: 1;
+    min-height: 160px;
+    border: 3px dashed var(--pink-light);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fffafc;
+}
+
+/* Grey text before anyone has won */
+.winner-placeholder {
+    color: #9a8a9b;
+}
+
+/* Big emojis shown with the winner */
+.winner-emojis {
+    font-size: 48px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+/* The winner's name: big and pink */
+.winner-name {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--pink);
+    margin-top: 6px;
+    animation: pop-in 0.5s ease-out;
+}
+
+/* "Congratulations" line under the winner's name */
+.winner-subtext {
+    font-size: 18px;
+    margin-top: 6px;
+}
+
+/* "Draw a Winner" button: teal, the complementary color to pink */
+.btn-draw {
+    background: var(--teal);
+    box-shadow: 0 5px 0 var(--teal-dark);
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+/* "Draw a Winner" button when hovered: darker teal */
+.btn-draw:hover:not(:disabled) {
+    background: var(--teal-dark);
+}
+
+/* "Draw a Winner" button when it can't be used yet: faded grey */
+.btn-draw:disabled {
+    background: #c9c2ca;
+    box-shadow: 0 5px 0 #aaa2ab;
+    cursor: not-allowed;
+}
+
+/* "Start Over" button: plain outline style */
+.btn-reset {
+    background: transparent;
+    color: var(--pink);
+    border: 2px solid var(--pink);
+    padding: 12px 24px;
+}
+
+/* "Start Over" button when hovered: filled pink */
+.btn-reset:hover {
+    background: var(--pink);
+    color: var(--white);
+}
+
+/* A falling piece of confetti (created by JavaScript when someone wins) */
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 16px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+/* The falling movement for the confetti */
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* Footer text at the bottom */
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    color: #9a8a9b;
+}
+
+/* On small screens (phones): stack the cards and shrink text */
+@media (max-width: 700px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .entry-form {
+        flex-direction: column;
+    }
+}

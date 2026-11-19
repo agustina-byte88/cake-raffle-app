@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cake Raffle 🎂</title>
+
+    <!-- Google Font for a fun, friendly look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Connect CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating decorative sprinkles in the background -->
+    <div class="sprinkles" aria-hidden="true">
+        <span>🧁</span><span>🍰</span><span>🎂</span><span>🍓</span>
+        <span>🧁</span><span>🍰</span><span>🎉</span><span>🍒</span>
+    </div>
+
+    <!-- Header section -->
+    <header class="header">
+        <div class="header-emoji">🎂</div>
+        <h1>The Great Cake Raffle</h1>
+        <p class="tagline">Enter your name, cross your fingers, and win a delicious cake!</p>
+    </header>
+
+    <!-- Main container -->
+    <main class="container">
+
+        <!-- Entry form section -->
+        <section class="card entry-section">
+            <h2>🎟️ Enter the Raffle</h2>
+
+            <form id="entryForm" class="entry-form">
+                <label for="nameInput" class="visually-hidden">Your name</label>
+                <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="Type your name here..."
+                    autocomplete="off"
+                    maxlength="40"
+                    required
+                >
+                <button type="submit" class="btn btn-add">Add Me!</button>
+            </form>
+
+            <!-- Small helper message (errors, duplicates, etc.) -->
+            <p id="formMessage" class="form-message"></p>
+        </section>
+
+        <!-- Participants list section -->
+        <section class="card participants-section">
+            <div class="section-title">
+                <h2>👥 Participants</h2>
+                <span id="participantCount" class="count-badge">0</span>
+            </div>
+
+            <ul id="participantsList" class="participants-list"></ul>
+
+            <p id="emptyMessage" class="empty-message">No one has entered yet. Be the first! 🍰</p>
+        </section>
+
+        <!-- Winner display section -->
+        <section class="card winner-section">
+            <h2>🏆 Winner</h2>
+
+            <div id="winnerDisplay" class="winner-display">
+                <p class="winner-placeholder">The winner will appear here...</p>
+            </div>
+
+            <!-- Draw button -->
+            <button id="drawButton" class="btn btn-draw" disabled>🎲 Draw a Winner</button>
+
+            <!-- Reset button -->
+            <button id="resetButton" class="btn btn-reset">Start Over</button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Made with 💖 and lots of frosting
+    </footer>
+
+    <!-- Connect JavaScript file -->
+    <script src="java.js"></script>
+
+</body>
+
+</html>
